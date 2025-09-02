@@ -2,7 +2,7 @@ from g4f.client import Client
 from g4f.Provider.GeminiPro import GeminiPro
 
 client = Client(
-    api_key="AIzaSyDG_BXLX52SyTRw31yUHHwJolymVqkc7PQ",
+    api_key="",
     provider=GeminiPro
 )
 response = client.chat.completions.create(
