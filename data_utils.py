@@ -167,7 +167,10 @@ class CQADatasetLoader(DatasetLoader):
     def _parse_llm_output(self, output):
         rationale_label = output.split('Q:')[0]
         rationale_label = rationale_label.rstrip()
-        rationale, label = rationale_label.split('So the answer is')
+        parts = rationale_label.rsplit('So the answer is', 1)
+        if len(parts) < 2:
+            return ' ', ' '
+        rationale, label = parts
         rationale = rationale.rstrip()
 
         try:

@@ -142,9 +142,8 @@ def run(args):
             model_inputs['expl_input_ids'] = expl_model_inputs['input_ids']
             model_inputs['expl_attention_mask'] = expl_model_inputs['attention_mask']
 
-            with tokenizer.as_target_tokenizer():
-                label_output_encodings = tokenizer(examples['label'], max_length=256, truncation=True)
-                rationale_output_encodings = tokenizer(examples['rationale'], max_length=256, truncation=True)
+            label_output_encodings = tokenizer(examples['label'], max_length=256, truncation=True)
+            rationale_output_encodings = tokenizer(examples['rationale'], max_length=256, truncation=True)
 
             model_inputs['labels'] = label_output_encodings['input_ids']
             model_inputs['aux_labels'] = rationale_output_encodings['input_ids']
@@ -159,8 +158,7 @@ def run(args):
                 truncation=True
             )
 
-            with tokenizer.as_target_tokenizer():
-                label_output_encodings = tokenizer(examples['label'], max_length=256, truncation=True)
+            label_output_encodings = tokenizer(examples['label'], max_length=256, truncation=True)
 
             model_inputs['labels'] = label_output_encodings['input_ids']
 
