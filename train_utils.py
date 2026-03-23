@@ -55,7 +55,7 @@ def train_and_evaluate(args, run, tokenizer, tokenized_datasets, compute_metrics
     training_args = Seq2SeqTrainingArguments(
         output_dir,
         remove_unused_columns = False,
-        evaluation_strategy = 'steps',
+        eval_strategy = 'steps',
         eval_steps=args.eval_steps,
         save_strategy='no',
         save_steps=args.eval_steps,
