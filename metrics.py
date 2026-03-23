@@ -39,7 +39,9 @@ def eval_equation(equation):
 def compute_metrics_text(tokenizer):
     def compute_metrics(eval_pred):
         predictions, labels = eval_pred
-        decoded_preds = tokenizer.batch_decode(predictions[0], skip_special_tokens=True)
+        # Sanitize predictions: replace invalid token IDs to prevent OverflowError
+        preds = np.where(predictions[0] >= 0, predictions[0], tokenizer.pad_token_id)
+        decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
 
         labels = np.where(labels[0] != -100, labels[0], tokenizer.pad_token_id)
         decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
